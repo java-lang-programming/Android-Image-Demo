@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filters">
+        <item>通常</item>
+        <item>GrayScale</item>
+        <item>Sepia</item>
+        <item>Poraroid</item>
+        <item>brownie</item>
+        <item>vintagePinhole</item>
+        <item>kodachrome</item>
+        <item>desaturateLuminance</item>
+        <item>brightness</item>
+    </string-array>
+</resources>
