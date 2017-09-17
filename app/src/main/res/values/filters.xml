@@ -8,7 +8,10 @@
         <item>brownie</item>
         <item>vintagePinhole</item>
         <item>kodachrome</item>
+        <item>technicolor</item>
         <item>desaturateLuminance</item>
         <item>brightness</item>
+        <item>night</item>
+        <item>LSD</item>
     </string-array>
 </resources>
