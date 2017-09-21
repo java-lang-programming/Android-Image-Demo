@@ -59,7 +59,8 @@ class ColorMatrixActivity : AppCompatActivity() {
                         8.toLong() -> desaturateLuminance()
                         9.toLong() -> brightness(0.7.toFloat())
                         10.toLong() -> night(0.9.toFloat())
-                        11.toLong() -> lsd()
+                        //11.toLong() -> lsd()
+                        11.toLong() -> maskBlur()
                     }
                 }
             }
@@ -242,6 +243,17 @@ class ColorMatrixActivity : AppCompatActivity() {
         img.colorFilter = ColorMatrixColorFilter(colorMatrix)
     }
 
+    // binray
+    // http://chiuki.github.io/android-shaders-filters/#/16
+    internal fun maskBlur() {
+        val colorMatrix = ColorMatrix()
+        colorMatrix.set(floatArrayOf(
+                1.0f, 0.0f, 0.0f, 0.5f, 0.0f,
+                0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 1.0f, 0.0f))
+        img.colorFilter = ColorMatrixColorFilter(colorMatrix)
+    }
 
     internal fun colorFilter(colorMatrix: ColorMatrix) {
         val filter = ColorMatrixColorFilter(colorMatrix)

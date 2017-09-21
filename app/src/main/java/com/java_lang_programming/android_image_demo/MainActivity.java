@@ -14,8 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.java_lang_programming.android_image_demo.colormatrix.BasicColorMatrixActivity;
-import com.java_lang_programming.android_image_demo.colormatrix.ColorMatrixActivity;
+import com.java_lang_programming.android_image_demo.article87.colormatrix.BasicColorMatrixActivity;
+import com.java_lang_programming.android_image_demo.article87.colormatrix.ColorMatrixActivity;
+import com.java_lang_programming.android_image_demo.filter.MaskFilterActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,6 +44,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        Button btn_mask_filter = (Button) findViewById(R.id.btn_mask_filter);
+        btn_mask_filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveMaskFilterActivity();
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +77,11 @@ public class MainActivity extends AppCompatActivity
 
     private void moveColorMatrixActivity() {
         Intent intent = new Intent(this, ColorMatrixActivity.class);
+        startActivity(intent);
+    }
+
+    private void moveMaskFilterActivity() {
+        Intent intent = new Intent(this, MaskFilterActivity.class);
         startActivity(intent);
     }
 

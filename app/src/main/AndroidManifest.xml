@@ -19,8 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".colormatrix.ColorMatrixActivity" />
-        <activity android:name=".colormatrix.BasicColorMatrixActivity"></activity>
+        <activity android:name="com.java_lang_programming.android_image_demo.article87.colormatrix.ColorMatrixActivity" />
+        <activity android:name="com.java_lang_programming.android_image_demo.article87.colormatrix.BasicColorMatrixActivity" />
+        <activity android:name=".filter.MaskFilterActivity"></activity>
     </application>
 
 </manifest>

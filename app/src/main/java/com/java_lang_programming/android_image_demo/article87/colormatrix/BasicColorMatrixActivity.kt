@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.java_lang_programming.android_image_demo.colormatrix
+package com.java_lang_programming.android_image_demo.article87.colormatrix
 
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
@@ -47,19 +47,6 @@ class BasicColorMatrixActivity : AppCompatActivity() {
     private fun filter() {
         val colorMatrix = ColorMatrix()
         colorMatrix.setScale(0.5f, 1.0f, 1.0f, 1.0f);
-
-//        colorMatrix.set(floatArrayOf(
-//                1.0f/3.0f, 1.0f/3.0f, 1.0f/3.0f, 0.0f, 0.0f,
-//                1.0f/3.0f, 1.0f/3.0f, 1.0f/3.0f, 0.0f, 0.0f,
-//                1.0f/3.0f, 1.0f/3.0f, 1.0f/3.0f, 0.0f, 0.0f,
-//                0.0f, 0.0f, 0.0f, 1.0f, 0.0f))
-
-        // debug
-//        val matrix = colorMatrix.array
-//        for (color in matrix) {
-//            Log.d("ColorMatrixActivity", color.toString())
-//        }
-
         img.colorFilter = ColorMatrixColorFilter(colorMatrix)
     }
 

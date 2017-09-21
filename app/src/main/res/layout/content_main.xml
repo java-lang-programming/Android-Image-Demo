@@ -20,9 +20,18 @@
         android:id="@+id/btn_color_matrix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BasicColorMatrix"
+        android:text="ColorMatrixActivity"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_basic_color" />
+
+    <Button
+        android:id="@+id/btn_mask_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MaskFilterActivity"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_color_matrix" />
 
 </android.support.constraint.ConstraintLayout>
