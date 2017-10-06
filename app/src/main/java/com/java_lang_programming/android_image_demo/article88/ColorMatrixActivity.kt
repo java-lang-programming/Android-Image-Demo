@@ -1,10 +1,27 @@
-package com.java_lang_programming.android_image_demo.colormatrix
+/*
+ * Copyright (C) 2017 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * presented by http://java-lang-programming.com/
+ */
+
+package com.java_lang_programming.android_image_demo.article88
 
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -13,15 +30,7 @@ import android.widget.Spinner
 import com.java_lang_programming.android_image_demo.R
 
 /**
- * TODO
- * 次はspinnerの表示から
- * https://akira-watson.com/android/spinner.html
- * https://github.com/googlesamples/android-architecture/tree/dev-todo-mvp-kotlin/
- * filter
- * https://github.com/phoboslab/WebGLImageFilter/blob/master/webgl-image-filter.js
- *
- * // 理論
- * http://www.c-sharpcorner.com/article/color-transformations-and-the-color-matrix/
+ * ColorMatrix Sample
  */
 class ColorMatrixActivity : AppCompatActivity() {
 
@@ -34,21 +43,14 @@ class ColorMatrixActivity : AppCompatActivity() {
 
         img = findViewById(R.id.img)
         spinner = findViewById(R.id.filters)
-        // https://github.com/googlesamples/android-architecture/blob/dev-todo-mvp-kotlin/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/addedittask/AddEditTaskActivity.kt
-        // 1. applicationContext
-        // xmlを作成する　あり得ない。。。styleで継承すると、面倒なので作るべき。
         val adapter = ArrayAdapter.createFromResource(applicationContext, R.array.filters, R.layout.filters_spinner_item)
         adapter.setDropDownViewResource(R.layout.filters_spinner_dropdown_item)
         spinner.adapter = adapter
 
-        // 2. 説明を書く 複数のインターフェースをもつインターフェース
-        // http://qiita.com/pankuz_list/items/6d57bb868af6a13496c0
         val listener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // 3. let
                 parent?.let {
                     when (it.getItemIdAtPosition(position)) {
-                        0.toLong() -> normal()
                         1.toLong() -> grayScale()
                         2.toLong() -> sepia()
                         3.toLong() -> polaroid()
@@ -59,22 +61,12 @@ class ColorMatrixActivity : AppCompatActivity() {
                         8.toLong() -> desaturateLuminance()
                         9.toLong() -> brightness(0.7.toFloat())
                         10.toLong() -> night(0.9.toFloat())
-                        //11.toLong() -> lsd()
-                        11.toLong() -> maskBlur()
+                        11.toLong() -> lsd()
+                        12.toLong() -> contrast(2.0f)
+                        13.toLong() -> binary()
                     }
                 }
             }
-
-//            <item>通常</item>
-//            <item>GrayScale</item>
-//            <item>Sepia</item>
-//            <item>Poraroid</item>
-//            <item>brownie</item>
-//            <item>vintagePinhole</item>
-//            <item>kodachrome</item>
-            //<item>technicolor</item>
-//            <item>desaturateLuminance</item>
-//            <item>brightness</item>
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
@@ -83,17 +75,9 @@ class ColorMatrixActivity : AppCompatActivity() {
         spinner.onItemSelectedListener = listener
     }
 
-    internal fun normal() {
-        //Toast.makeText(baseContext, "normal", Toast.LENGTH_LONG).show()
-    }
-
     internal fun grayScale() {
         val colorMatrix = ColorMatrix()
         colorMatrix.setSaturation(0.0f)
-        val matrix = colorMatrix.array
-//        for (color in matrix) {
-//            Log.d("ColorMatrixActivity", color.toString())
-//        }
         img.colorFilter = ColorMatrixColorFilter(colorMatrix)
     }
 
@@ -106,12 +90,6 @@ class ColorMatrixActivity : AppCompatActivity() {
                 0.0f, 0.0f, 0.0f, 1.0f, 0.0f))
 
         img.colorFilter = ColorMatrixColorFilter(colorMatrix)
-
-//        // debug
-//        val matrix = colorMatrix.array
-//        for (color in matrix) {
-//            Log.d("ColorMatrixActivity", color.toString())
-//        }
     }
 
     internal fun desaturateLuminance() {
@@ -172,22 +150,9 @@ class ColorMatrixActivity : AppCompatActivity() {
                 -0.231103377548616f, -0.7501899197440212f, 1.847597816108189f, 0.0f, 30.950940869491138f,
                 0.0f, 0.0f, 0.0f, 1.0f, 0.0f))
         colorFilter(colorMatrix)
-//        1.9125277891456083,-0.8545344976951645,-0.09155508482755585,0,11.793603434377337,
-//        -0.3087833385928097,1.7658908555458428,-0.10601743074722245,0,-70.35205161461398,
-//        -0.231103377548616,-0.7501899197440212,1.847597816108189,0,30.950940869491138,
     }
 
-    /**
-     * Night effect
-     * http://pixijs.download/v4.4.0/docs/filters_colormatrix_ColorMatrixFilter.js.html
-     */
     internal fun night(intensity: Float) {
-        //TODO fedfactoring
-        //val intensity = intensity
-        //if (intensity < 0) {
-        //    intensity = 0.1
-        //}
-        //val intensity = intensity || 0.1
         val colorMatrix = ColorMatrix()
         colorMatrix.set(floatArrayOf(
                 intensity * -2.0f, -intensity, 0.0f, 0.0f, 0.0f,
@@ -195,10 +160,6 @@ class ColorMatrixActivity : AppCompatActivity() {
                 0.0f, intensity, intensity * 2.0f, 0.0f, 0.0f,
                 0.0f, 0.0f, 0.0f, 1.0f, 0.0f))
         img.colorFilter = ColorMatrixColorFilter(colorMatrix)
-//        intensity * (-2.0), -intensity, 0, 0, 0,
-//        -intensity, 0, intensity, 0, 0,
-//        0, intensity, intensity * 2.0, 0, 0,
-//        0, 0, 0, 1, 0,
     }
 
     /**
@@ -227,13 +188,9 @@ class ColorMatrixActivity : AppCompatActivity() {
         img.colorFilter = ColorMatrixColorFilter(colorMatrix)
     }
 
-    internal fun contrast(amount : Float ) {
-//        if (amount < 0) {
-//            amount = 0
-//        }
+    internal fun contrast(amount: Float = 0.0f) {
         val v = Math.max(amount, 0f) + 1f
-        Log.d("ColorMatrixActivity " , v.toString());
-        val o = -128 * (v - 1);
+        val o = -128 * (v - 1)
         val colorMatrix = ColorMatrix()
         colorMatrix.set(floatArrayOf(
                 v, 0.0f, 0.0f, 0.0f, o,
@@ -243,17 +200,31 @@ class ColorMatrixActivity : AppCompatActivity() {
         img.colorFilter = ColorMatrixColorFilter(colorMatrix)
     }
 
-    // binray
-    // http://chiuki.github.io/android-shaders-filters/#/16
-    internal fun maskBlur() {
+    internal fun binary() {
         val colorMatrix = ColorMatrix()
-        colorMatrix.set(floatArrayOf(
-                1.0f, 0.0f, 0.0f, 0.5f, 0.0f,
-                0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
-                0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+        colorMatrix.setSaturation(0.0f)
+        val m = 255f
+        val t = -255f * 128f
+        val threshold = ColorMatrix()
+        threshold.set(floatArrayOf(
+                m, 0.0f, 0.0f, 1.0f, t,
+                0.0f, m, 0.0f, 1.0f, t,
+                0.0f, 0.0f, m, 1.0f, t,
                 0.0f, 0.0f, 0.0f, 1.0f, 0.0f))
+        colorMatrix.postConcat(threshold)
+//        val colorMatrix = ColorMatrix()
+//        colorMatrix.set(floatArrayOf(
+//                54.315f, 182.325f, 18.359999f, 1.0f, -32640.0f,
+//                54.315f, 182.325f, 18.359999f, 1.0f, -32640.0f,
+//                54.315f, 182.325f, 18.359999f, 1.0f, -32640.0f,
+//                0.0f, 0.0f, 0.0f, 1.0f, 0.0f))
+//        val matrix = colorMatrix.array
+//        for (color in matrix) {
+//            Log.d("ColorMatrixActivity", color.toString())
+//        }
         img.colorFilter = ColorMatrixColorFilter(colorMatrix)
     }
+
 
     internal fun colorFilter(colorMatrix: ColorMatrix) {
         val filter = ColorMatrixColorFilter(colorMatrix)

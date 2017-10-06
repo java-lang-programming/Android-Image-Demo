@@ -6,4 +6,22 @@
     android:layout_height="match_parent"
     tools:context="com.java_lang_programming.android_image_demo.filter.MaskFilterActivity">
 
+    <Spinner
+        android:id="@+id/blur_filters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/enboss_filters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/blur_filters"/>
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lena"
+        app:layout_constraintTop_toBottomOf="@+id/blur_filters" />
+
 </android.support.constraint.ConstraintLayout>

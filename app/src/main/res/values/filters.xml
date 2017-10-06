@@ -13,5 +13,7 @@
         <item>brightness</item>
         <item>night</item>
         <item>LSD</item>
+        <item>contrast</item>
+        <item>Binary</item>
     </string-array>
 </resources>

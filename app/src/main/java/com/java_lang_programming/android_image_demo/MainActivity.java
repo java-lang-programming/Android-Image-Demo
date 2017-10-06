@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.java_lang_programming.android_image_demo.article87.colormatrix.BasicColorMatrixActivity;
-import com.java_lang_programming.android_image_demo.article87.colormatrix.ColorMatrixActivity;
+import com.java_lang_programming.android_image_demo.article88.ColorMatrixActivity;
 import com.java_lang_programming.android_image_demo.filter.MaskFilterActivity;
 
 public class MainActivity extends AppCompatActivity

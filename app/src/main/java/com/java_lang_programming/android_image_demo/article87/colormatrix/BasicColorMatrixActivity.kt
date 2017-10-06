@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * presented by http://java-lang-programming.com/
  */
 
 package com.java_lang_programming.android_image_demo.article87.colormatrix
@@ -46,7 +48,7 @@ class BasicColorMatrixActivity : AppCompatActivity() {
 
     private fun filter() {
         val colorMatrix = ColorMatrix()
-        colorMatrix.setScale(0.5f, 1.0f, 1.0f, 1.0f);
+        colorMatrix.setScale(0.5f, 1.0f, 1.0f, 1.0f)
         img.colorFilter = ColorMatrixColorFilter(colorMatrix)
     }
 
